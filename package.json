@@ -1,5 +1,6 @@
 {
 	"name": "workshop-bun",
+	"description": "A bun base CLI for a simple dice game",
 	"module": "src/index.ts",
 	"type": "module",
 	"private": true,
