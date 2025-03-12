@@ -14,6 +14,16 @@ CREATE TABLE IF NOT EXISTS users (
 )
     `);
 
+	db.run(`
+		CREATE TABLE IF NOT EXISTS rolls (
+			id INTEGER PRIMARY KEY AUTOINCREMENT,
+			user_id INTEGER NOT NULL,
+			dice INTEGER NOT NULL,
+			value INTEGER NOT NULL,
+			FOREIGN KEY(user_id) REFERENCES users(id)  
+		)
+	`);
+
 	return db;
 };
 

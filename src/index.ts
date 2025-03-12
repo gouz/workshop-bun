@@ -2,6 +2,7 @@
 import { Command } from "commander";
 import packageJSON from "../package.json";
 import user from "./commands/user";
+import serve from "./commands/serve";
 
 const program = new Command();
 program
@@ -10,6 +11,7 @@ program
 	.version(packageJSON.version);
 
 user(program);
+serve(program);
 
 program.showHelpAfterError();
 
