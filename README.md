@@ -256,3 +256,15 @@ bun add asciichart @types/asciichart
 Then, we modify the rolls command to display charts in the terminal.
 
 https://github.com/kroitor/asciichart
+
+## Step Bonus 3: Display images into your terminal
+
+Transform the previous step into an image using a library like `chart.js` help by `canvas` to render on server side.
+
+To display images, we need to install: 
+
+```shell
+bun add terminal-image
+```
+
+Good luck
