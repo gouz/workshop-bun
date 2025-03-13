@@ -1,11 +1,13 @@
 import { Elysia, t } from "elysia";
 import { jwt } from "@elysiajs/jwt";
+import { swagger } from "@elysiajs/swagger";
 import layoutHTML from "../view/layout.html" with { type: "text" };
 import loginHTML from "../view/pages/login.html" with { type: "text" };
 import dashboardHTML from "../view/pages/dashboard.html" with { type: "text" };
 import chalk from "chalk";
 import db from "./db";
 import routes from "../routes";
+import packageJSON from "../../package.json";
 
 export default (port: number) => {
 	const app = new Elysia()
@@ -13,6 +15,21 @@ export default (port: number) => {
 			jwt({
 				name: "jwt",
 				secret: Bun.env.MYSUPERSECRET ?? "",
+			}),
+		)
+		.use(
+			swagger({
+				documentation: {
+					info: {
+						title: "Forge Documentation",
+						version: packageJSON.version,
+					},
+					tags: [
+						{ name: "Roll", description: "Roll endpoints" },
+						{ name: "User", description: "User endpoints" },
+					],
+				},
+				path: "/v1/swagger",
 			}),
 		)
 		.use(routes)

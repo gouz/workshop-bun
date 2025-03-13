@@ -13,11 +13,24 @@ export const user = new Elysia({ prefix: "/user" })
 				dice: t.Number(),
 				value: t.Number(),
 			}),
+			detail: {
+				tags: ["User"],
+				summary: "Store a roll for a user",
+			},
 		},
 	)
-	.get("/:id/rolls", ({ params: { id } }) => {
-		const rolls = getRolls(Number(id));
-		return new Response(JSON.stringify({ rolls }), {
-			headers: { "Content-Type": "application/json" },
-		});
-	});
+	.get(
+		"/:id/rolls",
+		({ params: { id } }) => {
+			const rolls = getRolls(Number(id));
+			return new Response(JSON.stringify({ rolls }), {
+				headers: { "Content-Type": "application/json" },
+			});
+		},
+		{
+			detail: {
+				tags: ["User"],
+				summary: "Get rolls for a user",
+			},
+		},
+	);
