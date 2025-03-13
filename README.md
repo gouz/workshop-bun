@@ -250,7 +250,7 @@ https://elysiajs.com/plugins/swagger.html
 First, we install a new lib:
 
 ```shell
-bun add asciichart
+bun add asciichart @types/asciichart
 ```
 
 Then, we modify the rolls command to display charts in the terminal.
