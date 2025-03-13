@@ -3,6 +3,7 @@ import { Command } from "commander";
 import packageJSON from "../package.json";
 import user from "./commands/user";
 import serve from "./commands/serve";
+import simulate from "./commands/simulate";
 
 const program = new Command();
 program
@@ -12,6 +13,7 @@ program
 
 user(program);
 serve(program);
+simulate(program);
 
 program.showHelpAfterError();
 
