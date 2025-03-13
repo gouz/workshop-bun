@@ -245,6 +245,6 @@ Add a swagger documentation to the API.
 
 https://elysiajs.com/plugins/swagger.html
 
-## Ste Bonus 2: Display charts into your terminal
+## Step Bonus 2: Display charts into your terminal
 
 TODO
