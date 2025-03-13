@@ -247,4 +247,12 @@ https://elysiajs.com/plugins/swagger.html
 
 ## Step Bonus 2: Display charts into your terminal
 
-TODO
+First, we install a new lib:
+
+```shell
+bun add asciichart
+```
+
+Then, we modify the rolls command to display charts in the terminal.
+
+https://github.com/kroitor/asciichart
