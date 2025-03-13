@@ -1,5 +1,6 @@
 import type { Command } from "commander";
 import db from "../utils/db";
+import { plot } from "asciichart";
 
 export default (program: Command) => {
 	program
@@ -21,7 +22,20 @@ export default (program: Command) => {
 					${options.user !== "" ? "WHERE user_id = $user_id" : ""} 
 					GROUP BY dice, value`,
 				)
-				.all({ user_id });
-			console.table(stats);
+				.all({ user_id }) as { dice: number; value: number; count: number }[];
+			const newStats = [...stats].reduce(
+				(a, { dice, value, count }) => {
+					if (!a[dice]) a[dice] = [];
+					if (!a[dice][value]) a[dice][value] = [];
+					a[dice][value].push(count);
+					return a;
+				},
+				{} as { [key: number]: number[][] },
+			);
+			Object.entries(newStats).forEach(([dice, values], _) => {
+				console.log(`Dice: ${dice}`);
+				values.shift();
+				console.log(plot(values.flat(), { height: 20, min: 0 }));
+			});
 		});
 };
