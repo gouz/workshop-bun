@@ -35,7 +35,7 @@ All steps correspond to a branch if you are stuck, you can switch to a branch to
 ## Step 2: Install Dependencies
 
 ```sh
-bun add elysia commander @elysiajs/jwt @elysiajs/swagger chalk cli-progress @types/cli-progress @inquirer/prompts
+bun add elysia commander @elysiajs/jwt @elysiajs/swagger @elysiajs/eden chalk cli-progress @types/cli-progress @inquirer/prompts
 ```
 
 - `elysia`: a lightweight framework for building APIs in Bun.
