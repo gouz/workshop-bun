@@ -1,0 +1,111 @@
+/::
+add_styles: assets/theme.css
+::/
+
+# Workshop Bun
+
+
+## gouz.dev
+
+<h3>// Sylvain Gougouzian</h3>
+
+Développeur Auvergnat Rhônalpin
+
+Formateur Numérique Responsable
+
+## Qu'est-ce que Bun ?
+
+<div style="display: flex;">
+  <div>
+  !image(assets/bun.svg,bun,500)
+  </div>
+  <div>
+    <ul style="list-style: none; padding-left: 2rem;">
+      <li style="margin-bottom: 2rem;">Concurrent de Node.js, Deno</li>
+      <li style="margin-bottom: 2rem;">Optimisé pour les performances (Développé en Zig)</li>
+      <li style="margin-bottom: 2rem;">Runtime, Bundler, Tests, ...</li>
+      <li>https://bun.sh</li>
+    </ul>
+  </div>
+</div>
+
+## Que va faire notre application ? (CLI)
+
+- `forge user add`
+- `forge user delete`
+- `forge user list`
+- `forge rolls`
+- `forge rolls -u <username>`
+- `forge serve`
+- `forge serve --port <number>`
+- `forge simulate`
+
+## Que va faire notre application ? (API)
+
+- GET `/api/roll/:dice/:number`
+- GET `/api/user/:id/rolls`
+- POST `/api/user/:id/rolls`
+
+## C'est parti ?
+
+Une branche par étape
+
+## Step 1: Initialisation
+
+## Step 2: Install Dependencies
+
+- `elysia`: a lightweight framework for building APIs in Bun.
+- `commander`: a command-line interface builder for Node.js / Bun.
+- `@elysiajs/jwt`: an authentication middleware for Elysia.
+- `@elysiajs/swagger`: a Swagger UI generator for Elysia.
+- `chalk`: a library for styling text in the terminal.
+- `cli-progress`: a progress bar library for the command line.
+- `@types/cli-progress`: type definitions for cli-progress.
+- `@inquirer/prompts`: a library for creating interactive prompts in the command line.
+
+## Step 3: Structure
+
+## Step 4: Command and Conquer
+
+## Step 5: User
+
+Our CLI has 3 subcommands:
+
+- `forge user add`: ask name => store db + display token
+- `forge user delete`: select name + confirm
+- `forge user list`: list of users
+
+## Step 6: Web
+
+## Step 7: Simulation
+
+```
+ ██████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ | dices | ETA: 1s | 1/7
+ ███░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ | d4 | ETA: 134s | 7922/100000
+```
+
+## Step 8: Roll commands
+
+CLI:
+- `forge rolls`: stats of rolls for all user
+- `forge rolls -u <username>`: stats of rolls for a specific user
+
+## Step 9: Build to Share
+
+```shell
+bun build ./src/index.ts --outfile forge --compile
+```
+
+## Step Bonus 1: Swagger documentation for the API
+
+## Step Bonus 2: Display charts into your terminal
+
+```shell
+bun add asciichart @types/asciichart
+```
+
+## Step Bonus 3: Display images into your terminal
+
+```shell
+bun add terminal-image
+```

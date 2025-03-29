@@ -1,0 +1,8 @@
+:root {
+    --white: #fafafa;
+    --dark-text: #2a2935;
+    --sd-background-color: var(--white);
+    --sd-heading-color: var(--dark-text);
+    --sd-text-color: var(--dark-text);
+    --sd-primary-color: var(--dark-text);
+}
