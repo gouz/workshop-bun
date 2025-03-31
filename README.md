@@ -18,7 +18,7 @@ CLI:
 - `forge simulate`: create a fake user and rolls a lot of dices
 
 API:
-- GET `/api/roll/:dice/:number`: roll a X dice of value
+- GET `/api/roll/:dice/:number`: roll X dice(s) of value
 - GET `/api/user/:id/rolls`: list of last rolls
 - POST `/api/user/:id/rolls`: add a roll to the user rolls list
 
