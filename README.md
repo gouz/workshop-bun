@@ -18,7 +18,7 @@ CLI:
 - `forge simulate`: create a fake user and rolls a lot of dices
 
 API:
-- GET `/api/roll/:dice/:number`: roll X dice(s) of value
+- GET `/api/roll/:dice`: roll a dice (:dice = nb faces)
 - GET `/api/user/:id/rolls`: list of last rolls
 - POST `/api/user/:id/rolls`: add a roll to the user rolls list
 
@@ -109,6 +109,20 @@ export default (program: Command) => {
 };
 ```
 
+and add it in `index.ts` with
+
+```ts
+import user from "./commands/user";
+
+...
+
+user(program);
+
+...
+
+program.parse(process.args);
+```
+
 more information at https://github.com/tj/commander.js?tab=readme-ov-file#commanderjs
 
 ## Step 5: User
@@ -175,7 +189,7 @@ CREATE TABLE IF NOT EXISTS rolls (
     user_id INTEGER NOT NULL,
     dice INTEGER NOT NULL,
     value INTEGER NOT NULL,
-    FOREIGN KEY(user_id) REFERENCES users(id)  
+    FOREIGN KEY(user_id) REFERENCES users(id)
 )
 ```
 
@@ -261,7 +275,7 @@ https://github.com/kroitor/asciichart
 
 Transform the previous step into an image using a library like `chart.js` help by `canvas` to render on server side.
 
-To display images, we need to install: 
+To display images, we need to install:
 
 ```shell
 bun add terminal-image

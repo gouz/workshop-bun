@@ -42,7 +42,7 @@ Formateur Numérique Responsable
 
 ## Que va faire notre application ? (API)
 
-- GET `/api/roll/:dice/:number`
+- GET `/api/roll/:dice`
 - GET `/api/user/:id/rolls`
 - POST `/api/user/:id/rolls`
 
