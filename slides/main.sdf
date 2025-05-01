@@ -46,7 +46,19 @@ Formateur Numérique Responsable
 - GET `/api/user/:id/rolls`
 - POST `/api/user/:id/rolls`
 
+## bun ?
+
+```
+curl -fsSL https://bun.sh/install | bash
+```
+
+```
+powershell -c "irm bun.sh/install.ps1 | iex"
+```
+
 ## C'est parti ?
+
+https://github.com/gouz/workshop-bun
 
 Une branche par étape
 
@@ -55,7 +67,7 @@ Une branche par étape
 ## Step 2: Install Dependencies
 
 - `elysia`: a lightweight framework for building APIs in Bun.
-- `commander`: a command-line interface builder for Node.js / Bun.
+- `clipse`: a command-line interface builder for Node.js / Bun.
 - `@elysiajs/jwt`: an authentication middleware for Elysia.
 - `@elysiajs/swagger`: a Swagger UI generator for Elysia.
 - `chalk`: a library for styling text in the terminal.
@@ -65,7 +77,23 @@ Une branche par étape
 
 ## Step 3: Structure
 
+```
+"bin": {
+  "forge": "./src/index.ts"
+},
+"scripts": {
+    "forge": "bun src/index.ts"
+}
+```
+
 ## Step 4: Command and Conquer
+
+Juste préparer les commandes, on les implémente dans la suite de l'atelier
+
+```js
+// here comes your commands
+user(program);
+```
 
 ## Step 5: User
 

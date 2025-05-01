@@ -8,64 +8,64 @@ import db from "./db";
 import routes from "../routes";
 
 export default (port: number) => {
-	const app = new Elysia()
-		.use(
-			jwt({
-				name: "jwt",
-				secret: Bun.env.MYSUPERSECRET ?? "",
-			}),
-		)
-		.use(routes)
-		.get(
-			"/",
-			() =>
-				new Response(layoutHTML.replace("<main></main>", loginHTML), {
-					headers: { "Content-Type": "text/html" },
-				}),
-		)
-		.post(
-			"/",
-			async ({ jwt, cookie: { auth }, body, error, redirect }) => {
-				// check if token exists
-				const user = db
-					.query("SELECT id, name, token FROM users WHERE token = $token")
-					.get({ token: body.token });
-				if (user !== null) {
-					const value = await jwt.sign({ ...user });
-					auth.set({
-						value,
-						httpOnly: true,
-						maxAge: 7 * 86400,
-						path: "/dashboard",
-					});
-					return redirect("/dashboard");
-				}
-				return error(403, "Invalid token");
-			},
-			{
-				body: t.Object({
-					token: t.String(),
-				}),
-			},
-		)
-		.get("/dashboard", async ({ jwt, error, cookie: { auth } }) => {
-			const profile = await jwt.verify(auth.value);
-			if (!profile) return error(401, "Unauthorized");
+  const app = new Elysia()
+    .use(
+      jwt({
+        name: "jwt",
+        secret: Bun.env.MYSUPERSECRET ?? "lskjfslkjdflsd",
+      }),
+    )
+    .use(routes)
+    .get(
+      "/",
+      () =>
+        new Response(layoutHTML.replace("<main></main>", loginHTML), {
+          headers: { "Content-Type": "text/html" },
+        }),
+    )
+    .post(
+      "/",
+      async ({ jwt, cookie: { auth }, body, error, redirect }) => {
+        // check if token exists
+        const user = db
+          .query("SELECT id, name, token FROM users WHERE token = $token")
+          .get({ token: body.token });
+        if (user !== null) {
+          const value = await jwt.sign({ ...user });
+          auth.set({
+            value,
+            httpOnly: true,
+            maxAge: 7 * 86400,
+            path: "/dashboard",
+          });
+          return redirect("/dashboard");
+        }
+        return error(403, "Invalid token");
+      },
+      {
+        body: t.Object({
+          token: t.String(),
+        }),
+      },
+    )
+    .get("/dashboard", async ({ jwt, error, cookie: { auth } }) => {
+      const profile = await jwt.verify(auth.value);
+      if (!profile) return error(401, "Unauthorized");
 
-			return new Response(
-				layoutHTML.replace(
-					"<main></main>",
-					dashboardHTML
-						.replaceAll("$$TOKEN$$", profile.token)
-						.replaceAll("$$NAME$$", profile.name)
-						.replaceAll("$$ID$$", profile.id),
-				),
-				{ headers: { "Content-Type": "text/html" } },
-			);
-		})
-		.listen(port);
-	console.log(
-		"Server running on port",
-		chalk.cyan(`http://${app.server?.hostname}:${app.server?.port}`),
-	);
+      return new Response(
+        layoutHTML.replace(
+          "<main></main>",
+          dashboardHTML
+            .replaceAll("$$TOKEN$$", profile.token)
+            .replaceAll("$$NAME$$", profile.name)
+            .replaceAll("$$ID$$", profile.id),
+        ),
+        { headers: { "Content-Type": "text/html" } },
+      );
+    })
+    .listen(port);
+  console.log(
+    "Server running on port",
+    chalk.cyan(`http://${app.server?.hostname}:${app.server?.port}`),
+  );
 };
